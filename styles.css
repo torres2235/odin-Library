@@ -1,0 +1,16 @@
+.books {
+    width: 100px;
+    height: 200px;
+    color: grey;
+    background-color: powderblue;
+    border: black solid 1px;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
