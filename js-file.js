@@ -51,6 +51,10 @@ function addBookCard(book) {
     document.querySelector('.container').insertBefore(newBook, newButton);
 }
 
+function removeBookCard() {
+    
+}
+
 newButton.addEventListener('click', () => { //button to add books to myLibrary and display
     let title = prompt('Book Title: ', 'insert title');
     let author = prompt('Book Author: ', 'insert author');
