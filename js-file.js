@@ -14,17 +14,18 @@ function Book(title, author, pages, read) {
 }
 
 const newButton = document.getElementById('new');
+let deleteId = 0;
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 
     let newBook = document.createElement("div"); //create new div
     newBook.classList.toggle('books');
-    //let newContent = document.createTextNode("[" + book.title + ", by " + book.author + ", " + book.pages + " pages, " + book.read + "]");
+
     let newTitle = document.createElement("div");
     let title = document.createTextNode(book.title);
     newTitle.append(title);
-    newBook.appendChild(newTitle); //insert text into our new div
+    newBook.appendChild(newTitle);
 
     let newAuthor = document.createElement("div");
     let author = document.createTextNode(book.author);
@@ -46,6 +47,13 @@ function addBookToLibrary(book) {
     newRead.append(read);
     newBook.appendChild(newRead);
 
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.toggle('delete');
+    deleteButton.id = deleteId;
+    let content = document.createTextNode("Delete");
+    deleteButton.append(content);
+    newBook.appendChild(deleteButton);
+    deleteId++;
     
     document.querySelector('.container').insertBefore(newBook, newButton); //put our new div into our 'books' div
     
@@ -72,3 +80,9 @@ newButton.addEventListener('click', () => {
     addBookToLibrary(newBook);
     console.table(myLibrary);
 });
+
+
+const deleteButton = document.querySelector('button');
+deleteButton.addEventListener('click', () => {
+    alert(deleteButton.id);
+})
