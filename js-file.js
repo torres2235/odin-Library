@@ -5,38 +5,38 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-
-    /*
-    this.info = function() {
-        return(title + " by " + author + ", " + pages + " pages, " + read);
-    }
-    */
 }
 
 const newButton = document.getElementById('new');
-let deleteId = 0;
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 
+}
+
+function addBookCard(book) {
     let newBook = document.createElement("div"); //create new div
     newBook.classList.toggle('books');
 
+    //sets our title for the display
     let newTitle = document.createElement("div");
     let title = document.createTextNode(book.title);
     newTitle.append(title);
     newBook.appendChild(newTitle);
 
+    //sets our author for the display
     let newAuthor = document.createElement("div");
     let author = document.createTextNode(book.author);
     newAuthor.append(author);
     newBook.appendChild(newAuthor);
 
+    //sets our pages for our display
     let newPages = document.createElement("div");
     let pages = document.createTextNode(book.pages);
     newPages.append(pages);
     newBook.appendChild(newPages);
 
+    //sets if we read the book for our display
     let newRead = document.createElement("div");
     let read;
     if(book.read === true) {
@@ -47,29 +47,17 @@ function addBookToLibrary(book) {
     newRead.append(read);
     newBook.appendChild(newRead);
 
+    //adds the delete button
     let deleteButton = document.createElement("button");
-    deleteButton.classList.toggle('delete');
-    deleteButton.id = deleteId;
     let content = document.createTextNode("Delete");
     deleteButton.append(content);
     newBook.appendChild(deleteButton);
-    deleteId++;
     
-    document.querySelector('.container').insertBefore(newBook, newButton); //put our new div into our 'books' div
-    
-
+    //inserts our new book card before our add button
+    document.querySelector('.container').insertBefore(newBook, newButton);
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
-const sevenHabits = new Book("The 7 Habits of Highly Effective People", "Stephen Covey", 381, false);
-const nineteenEightFour = new Book("1984", "George Orwell", 328, true);
-addBookToLibrary(theHobbit);
-addBookToLibrary(sevenHabits);
-addBookToLibrary(nineteenEightFour);
-
-console.table(myLibrary);
-
-newButton.addEventListener('click', () => {
+newButton.addEventListener('click', () => { //button to add books to myLibrary and display
     let title = prompt('Book Title: ', 'insert title');
     let author = prompt('Book Author: ', 'insert author');
     let pages = prompt('Book Pages: ', 999);
@@ -78,11 +66,22 @@ newButton.addEventListener('click', () => {
 
     const newBook = new Book (title, author, pages, read);
     addBookToLibrary(newBook);
+    addBookCard(newBook);
     console.table(myLibrary);
 });
 
+//default books added into myLibrary
+function onLoad() {
+    const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
+    const sevenHabits = new Book("The 7 Habits of Highly Effective People", "Stephen Covey", 381, false);
+    const nineteenEightFour = new Book("1984", "George Orwell", 328, true);
+    addBookToLibrary(theHobbit);
+    addBookCard(theHobbit);
+    addBookToLibrary(sevenHabits);
+    addBookCard(sevenHabits);
+    addBookToLibrary(nineteenEightFour);
+    addBookCard(nineteenEightFour);
 
-const deleteButton = document.querySelector('button');
-deleteButton.addEventListener('click', () => {
-    alert(deleteButton.id);
-})
+    console.table(myLibrary);
+}
+//----------------------------------
