@@ -1,13 +1,16 @@
 .books {
-    width: 100px;
-    height: 200px;
+    width: auto;
+    height: 150px;
     color: grey;
     background-color: powderblue;
     border: black solid 1px;
     border-radius: 8px;
+    margin: 5px;
+    padding: 5px;
 
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .container {

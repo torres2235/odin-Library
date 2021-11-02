@@ -21,22 +21,30 @@ function addBookToLibrary(book) {
     let newBook = document.createElement("div"); //create new div
     newBook.classList.toggle('books');
     //let newContent = document.createTextNode("[" + book.title + ", by " + book.author + ", " + book.pages + " pages, " + book.read + "]");
+    let newTitle = document.createElement("div");
     let title = document.createTextNode(book.title);
-    newBook.appendChild(title); //insert text into our new div
+    newTitle.append(title);
+    newBook.appendChild(newTitle); //insert text into our new div
 
+    let newAuthor = document.createElement("div");
     let author = document.createTextNode(book.author);
-    newBook.appendChild(author);
+    newAuthor.append(author);
+    newBook.appendChild(newAuthor);
 
+    let newPages = document.createElement("div");
     let pages = document.createTextNode(book.pages);
-    newBook.appendChild(pages);
+    newPages.append(pages);
+    newBook.appendChild(newPages);
 
+    let newRead = document.createElement("div");
     let read;
     if(book.read === true) {
         read = document.createTextNode('Read');
     } else {
         read = document.createTextNode('Not Read');
     }
-    newBook.appendChild(read);
+    newRead.append(read);
+    newBook.appendChild(newRead);
 
     
     document.querySelector('.container').insertBefore(newBook, newButton); //put our new div into our 'books' div
