@@ -20,37 +20,31 @@ function addBookCard(book) {
 
     //sets our title for the display
     let newTitle = document.createElement("div");
-    let title = document.createTextNode(book.title);
-    newTitle.append(title);
+    newTitle.textContent = book.title;
     newBook.appendChild(newTitle);
 
     //sets our author for the display
     let newAuthor = document.createElement("div");
-    let author = document.createTextNode(book.author);
-    newAuthor.append(author);
+    newAuthor.textContent = book.author;
     newBook.appendChild(newAuthor);
 
     //sets our pages for our display
     let newPages = document.createElement("div");
-    let pages = document.createTextNode(book.pages);
-    newPages.append(pages);
+    newPages.textContent = book.pages;
     newBook.appendChild(newPages);
 
     //sets if we read the book for our display
     let newRead = document.createElement("div");
-    let read;
     if(book.read === true) {
-        read = document.createTextNode('Read');
+        newRead.textContent = 'Read'
     } else {
-        read = document.createTextNode('Not Read');
+        newRead.textContent = 'Not Read'
     }
-    newRead.append(read);
     newBook.appendChild(newRead);
 
     //adds the delete button
     let deleteButton = document.createElement("button");
-    let content = document.createTextNode("Delete");
-    deleteButton.append(content);
+    deleteButton.textContent = 'Delete';
     newBook.appendChild(deleteButton);
     
     //inserts our new book card before our add button
