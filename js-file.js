@@ -8,10 +8,10 @@ function Book(title, author, pages, read) {
 }
 
 const newButton = document.getElementById('new');
+let container = document.getElementById('container');
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-
 }
 
 function addBookCard(book) {
@@ -20,7 +20,7 @@ function addBookCard(book) {
 
     //sets our title for the display
     let newTitle = document.createElement("div");
-    newTitle.textContent = book.title;
+    newTitle.textContent = `"${book.title}"`;
     newBook.appendChild(newTitle);
 
     //sets our author for the display
@@ -46,13 +46,20 @@ function addBookCard(book) {
     let deleteButton = document.createElement("button");
     deleteButton.textContent = 'Delete';
     newBook.appendChild(deleteButton);
+    //container.appendChild(newBook);
     
     //inserts our new book card before our add button
-    document.querySelector('.container').insertBefore(newBook, newButton);
+    document.querySelector('#container').insertBefore(newBook, newButton);
+
+    //delete our 
+    deleteButton.onclick = function() {
+        container.removeChild(newBook);
+        myLibrary.splice(myLibrary.indexOf(book), 1); //gets the index of the book in myLibrary and deletes it
+    }
 }
 
-function removeBookCard() {
-    
+function removeBookCard(book) {
+    this.books = this.books.filter((book) => book.title !== title)
 }
 
 newButton.addEventListener('click', () => { //button to add books to myLibrary and display
@@ -61,7 +68,6 @@ newButton.addEventListener('click', () => { //button to add books to myLibrary a
     let pages = prompt('Book Pages: ', 999);
     pages = parseInt(pages);
     let read = confirm('Have you read it?');
-
     const newBook = new Book (title, author, pages, read);
     addBookToLibrary(newBook);
     addBookCard(newBook);
@@ -69,17 +75,15 @@ newButton.addEventListener('click', () => { //button to add books to myLibrary a
 });
 
 //default books added into myLibrary
-function onLoad() {
-    const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
-    const sevenHabits = new Book("The 7 Habits of Highly Effective People", "Stephen Covey", 381, false);
-    const nineteenEightFour = new Book("1984", "George Orwell", 328, true);
-    addBookToLibrary(theHobbit);
-    addBookCard(theHobbit);
-    addBookToLibrary(sevenHabits);
-    addBookCard(sevenHabits);
-    addBookToLibrary(nineteenEightFour);
-    addBookCard(nineteenEightFour);
+const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
+const sevenHabits = new Book("The 7 Habits of Highly Effective People", "Stephen Covey", 381, false);
+const nineteenEightFour = new Book("1984", "George Orwell", 328, true);
+addBookToLibrary(theHobbit);
+addBookCard(theHobbit);
+addBookToLibrary(sevenHabits);
+addBookCard(sevenHabits);
+addBookToLibrary(nineteenEightFour);
+addBookCard(nineteenEightFour);
 
-    console.table(myLibrary);
-}
+console.table(myLibrary);
 //----------------------------------
