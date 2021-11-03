@@ -33,6 +33,7 @@ function addBookCard(book) {
     newPages.textContent = book.pages;
     newBook.appendChild(newPages);
 
+    /*
     //sets if we read the book for our display
     let newRead = document.createElement("div");
     if(book.read === true) {
@@ -41,20 +42,40 @@ function addBookCard(book) {
         newRead.textContent = 'Not Read'
     }
     newBook.appendChild(newRead);
+    */
+
+    //adds the read toggle button
+    let readButton = document.createElement("button");
+    if(book.read === true) {
+        readButton.textContent = 'Read'
+    } else {
+        readButton.textContent = 'Not Read'
+    }
+    newBook.appendChild(readButton);
 
     //adds the delete button
     let deleteButton = document.createElement("button");
     deleteButton.textContent = 'Delete';
     newBook.appendChild(deleteButton);
+
     //container.appendChild(newBook);
     
     //inserts our new book card before our add button
     document.querySelector('#container').insertBefore(newBook, newButton);
 
-    //delete our 
+    //delete our bookCard if we hit the delete button
     deleteButton.onclick = function() {
         container.removeChild(newBook);
         myLibrary.splice(myLibrary.indexOf(book), 1); //gets the index of the book in myLibrary and deletes it
+    }
+
+    readButton.onclick = function() {
+        book.read = !book.read;
+        if(book.read === true) {
+            readButton.textContent = 'Read'
+        } else {
+            readButton.textContent = 'Not Read'
+        }
     }
 }
 
